@@ -12,7 +12,7 @@ parameters:
     default: "The awesome project provides awesome features to awesome people."
     description: Description of the project used in the README.
   - name: appName
-    default: awesomecli
+    default: '{{.projectName | lower | replace " " "-"}}'
     description: The name of the binary that you want to create. Could be the same your `project_slug` but since Go supports multiple apps in one repo it could also be sth. else. For example if your project is for some API there could be one app for the server and one CLI client.
     regex:
       pattern: ^[a-z]+$
