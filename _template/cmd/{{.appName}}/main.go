@@ -24,7 +24,11 @@ func run() error {
 		return err
 	}
 
-	defer logger.Sync()
+	defer func() {
+		if err := logger.Sync(); err != nil {
+			logger.Error("Failed to flush logger", zap.Error(err))
+		}
+	}()
 
 	logger.Info("Hello world!", zap.String("location", "world"))
 
